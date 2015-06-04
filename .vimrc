@@ -204,10 +204,12 @@ set gdefault
 " Editing mappings --------------------------------------------------------- {{{ 
 
 " Move line(s) of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+1<cr>`z
-nmap <M-k> mz:m-2<cr>'z
-vmap <M-j> :m'>+1<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 		
 " Yank a word to reg w
 noremap <C-a> "wyiw
