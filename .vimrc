@@ -15,7 +15,7 @@
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-let path='~/vimfiles/bundle'
+let path='~/.vim/bundle'
 call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
