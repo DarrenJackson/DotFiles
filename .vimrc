@@ -14,7 +14,7 @@
 " Vundle ------------------------------------------------------------------- {{{ 
 
 filetype off
-set rtp+=~/vimfiles/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 let path='~/vimfiles/bundle'
 call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
@@ -49,11 +49,14 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 set hidden
 set foldmethod=marker
-set undofile	
 "set fileformat=unix
 
 " Set leader to , (comma)
 let mapleader = ","
+
+set undofile	
+set undodir=$HOME/.vim/undodir
+set directory=$HOME/.vim/swapdir
 
 " shortcut to source the vim.rc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
