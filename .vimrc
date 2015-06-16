@@ -31,6 +31,8 @@ filetype plugin indent on
 " General ------------------------------------------------------------------ {{{ 
 
 let $cortex = "C:\\Cortex\\dev\\Jan\\Src\\Net\\Apps\\Gui"
+au BufNewFile,BufRead *.xaml set filetype=xml
+
 "
 " enable syntax highlighting
 syntax on
@@ -48,10 +50,13 @@ let &t_AF="\e[38;5;%dm"
 set hidden
 set foldmethod=marker
 set undofile	
-set fileformat=unix
+"set fileformat=unix
 
 " Set leader to , (comma)
 let mapleader = ","
+
+" shortcut to source the vim.rc
+:nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " }}}
 " VIM user interface ------------------------------------------------------- {{{
@@ -81,6 +86,7 @@ set whichwrap+=<,>,h,l
 
 " Ignore case when searching
 set ignorecase
+set smartcase
 
 " highlight search results, clear by typing ,<space>
 set incsearch
@@ -201,6 +207,10 @@ set gdefault
 
 
 " }}}
+" C# ----------------------------------------------------------------------- {{{
+" Surround word by Mock<>
+map <leader>m biMock<<ESC>ea><space>
+"}}}
 " Editing mappings --------------------------------------------------------- {{{ 
 
 " Move line(s) of text using ALT+[jk] or Comamnd+[jk] on mac
@@ -228,7 +238,7 @@ noremap cp yap<S-}>p
 " Plugins ------------------------------------------------------------------ {{{
 "   FuzzyFinder {{{
 nnoremap `f :FufFile<cr> 
-nnoremap `c :FufFile $cortex<cr> 
+nnoremap `c :FufCoverageFile $cortex/<cr> 
 "   }}}
 " }}}
 
