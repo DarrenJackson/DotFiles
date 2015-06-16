@@ -56,7 +56,7 @@ let mapleader = ","
 
 set undofile	
 set undodir=$HOME/.vim/undodir
-set directory=$HOME/.vim/swapdir
+set directory=$HOME/.vim/swapdir//
 
 " shortcut to source the vim.rc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
