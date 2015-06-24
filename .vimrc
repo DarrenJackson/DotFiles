@@ -14,8 +14,8 @@
 " Vundle ------------------------------------------------------------------- {{{ 
 
 filetype off
-set rtp+=~/vimfiles/bundle/Vundle.vim
-let path='~/vimfiles/bundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+let path='~/.vim/bundle'
 call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
@@ -143,7 +143,7 @@ if has('gui_running')
 	colorscheme kolor
 
     "set anti enc=utf-8
-    set guifont=Source_Code_Pro:h10
+    "set guifont=Source_Code_Pro:h10
 
     " Hide the toolbar
     set guioptions-=T
@@ -229,6 +229,7 @@ noremap cp yap<S-}>p
 "   FuzzyFinder {{{
 nnoremap `f :FufFile<cr> 
 nnoremap `c :FufFile $cortex<cr> 
+nnoremap `g :FufFile ~/Google Drive/**/<cr> 
 "   }}}
 " }}}
 
