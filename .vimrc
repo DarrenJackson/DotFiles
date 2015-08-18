@@ -61,6 +61,9 @@ set directory=$HOME/.vim/swapdir//
 " shortcut to source the vim.rc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
+:nnoremap <PageUp> :bnext<CR>
+:nnoremap <PageDown> :bprevious<CR>
+
 
 " }}}
 " VIM user interface ------------------------------------------------------- {{{
