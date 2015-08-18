@@ -1,5 +1,5 @@
-" .vimrc
 "
+" .vimrc - Darren Jackson
 "
 " Intro -------------------------------------------------------------------- {{{ 
 
@@ -41,12 +41,12 @@ syntax on
 set nocompatible
 set modelines=0
 set encoding=utf-8
-set term=xterm
+"set term=xterm
 
 " Misc
 set t_Co=256
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
+"let &t_AB="\e[48;5;%dm"
+"let &t_AF="\e[38;5;%dm"
 set hidden
 set foldmethod=marker
 "set fileformat=unix
@@ -60,6 +60,7 @@ set directory=$HOME/.vim/swapdir//
 
 " shortcut to source the vim.rc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
+
 
 " }}}
 " VIM user interface ------------------------------------------------------- {{{
@@ -132,10 +133,12 @@ set colorcolumn=+1
 set cursorline
 
 " Cursor line colour
-hi CursorLine cterm=NONE ctermbg=DarkGrey ctermfg=White guibg=darkred guifg=white
+"hi CursorLine cterm=NONE ctermbg=DarkGrey ctermfg=White guibg=darkred guifg=white
 
 " Folding colors
-:hi Folded ctermbg=LightGrey ctermfg=Black
+"hi Folded ctermbg=LightGrey ctermfg=Black
+
+colorscheme slate
 
 " }}}
 " GVim Options ------------------------------------------------------------- {{{ 
@@ -149,10 +152,9 @@ if has('gui_running')
         \gamma:1.5,contrast:0.5,geom:1,
         \renmode:5,taamode:1,level:0.5
 
-	colorscheme kolor
 
     "set anti enc=utf-8
-    "set guifont=Source_Code_Pro:h10
+    set guifont=Source_Code_Pro:h10
 
     " Hide the toolbar
     set guioptions-=T
