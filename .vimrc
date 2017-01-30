@@ -1,5 +1,4 @@
-"
-" .vimrc - Darren Jackson
+" .vimrc - Darren Jackson - 2016/11/30
 "
 " Intro -------------------------------------------------------------------- {{{ 
 
@@ -8,19 +7,25 @@
 " zm to fold all
 "
 "execute pathogen#infect()
-"filetype plugin indent on
 
 " }}}
 " Vundle ------------------------------------------------------------------- {{{ 
 
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible 
+
+filetype plugin indent on
+
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-let path='~/.vim/bundle'
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+let path='$HOME/.vim/bundle'
 call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'zeis/vim-kolor'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/FuzzyFinder'
@@ -30,49 +35,49 @@ filetype plugin indent on
 "}}}
 " General ------------------------------------------------------------------ {{{ 
 
-let $cortex = "C:\\Cortex\\dev\\Jan\\Src\\Net\\Apps\\Gui"
-au BufNewFile,BufRead *.xaml set filetype=xml
+"let $cortex = "C:\\Cortex\\dev\\Jan\\Src\\Net\\Apps\\Gui"
+"au BufNewFile,BufRead *.xaml set filetype=xml
 
-"
-" enable syntax highlighting
+" Syntax highlighting
 syntax on
 
-" Not a vi
-set nocompatible
-set modelines=0
-set encoding=utf-8
-"set term=xterm
+"set modelines=0                        "What does this do?
+"set encoding=utf-8
+set term=xterm
 
 " Misc
 set t_Co=256
-"let &t_AB="\e[48;5;%dm"
-"let &t_AF="\e[38;5;%dm"
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+
+" Hide buffers instead of closing them
 set hidden
+
 set foldmethod=marker
 "set fileformat=unix
 
 " Set leader to , (comma)
 let mapleader = ","
 
-set undofile	
+"set undofile	
 set undodir=$HOME/.vim/undodir
-set directory=$HOME/.vim/swapdir//
+set directory=$HOME/.vim/swapdir
 
 " shortcut to source the vim.rc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
-:nnoremap <PageUp> :bnext<CR>
-:nnoremap <PageDown> :bprevious<CR>
+":nnoremap <PageUp> :bnext<CR>
+":nnoremap <PageDown> :bprevious<CR>
 
 
 " }}}
 " VIM user interface ------------------------------------------------------- {{{
 
 " Set 7 lines to the curser (top/bottom)
-set so=7
+set so=7 
 
 " Relative line numbers
-set relativenumber
+"set relativenumber
 
 " Command menus, start command and press tab
 set wildmenu
@@ -82,33 +87,22 @@ set wildmode=list:longest,full
 set ruler
 
 " surround word with ()
-noremap <leader>b ysiw) 
+"noremap <leader>b ysiw) 
 
 " split line at first comma
-noremap <leader>j f,li<cr><esc>
+"noremap <leader>j f,li<cr><esc>
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
+
 set whichwrap+=<,>,h,l
 
-" Ignore case when searching
-set ignorecase
-set smartcase
+"nnoremap <CS-j> <S-j>
 
-" highlight search results, clear by typing ,<space>
-set incsearch
 
 " Show matching brackets when cursor is over them
-set showmatch
+"set showmatch
 
-" Highlight search results
-set hlsearch
-
-nnoremap <CS-j> <S-j>
-
-
-" Clear highlighted search by pressing ,<space>
-nnoremap <leader><space> :noh<cr>
 
 " No annoying sounds on errors
 set noerrorbells
@@ -119,32 +113,32 @@ set vb t_vb=
 inoremap jj <esc>
 
 " Show command being entered
-set showcmd
+"set showcmd
+
 
 " }}}
-" Colors and Fonts --------------------------------------------------------- {{{ 
+" SEARCH ------------------------------------------------------------------- {{{
 
-" Set line number colour
-highlight LineNr ctermfg=Grey
+" Map space to search
+map <space> /
+map <c-space> ?
 
-" Show column 80 in a colour
-highlight ColorColumn ctermbg=DarkGrey
-set textwidth=80
-set colorcolumn=+1 
+" Ignore case when searching
+set ignorecase
+set smartcase
 
-" Show cursor line
-set cursorline
+" highlight search results, clear by typing ,<space>
+set incsearch
 
-" Cursor line colour
-"hi CursorLine cterm=NONE ctermbg=DarkGrey ctermfg=White guibg=darkred guifg=white
+" Highlight search result
+set hlsearch
 
-" Folding colors
-"hi Folded ctermbg=LightGrey ctermfg=Black
+" Clear highlighted search by pressing ,<space>
+nnoremap <leader><space> :noh<cr>
 
-colorscheme slate
-
-" }}}
+"}}}
 " GVim Options ------------------------------------------------------------- {{{ 
+
 
 " Set extra options when running in GUI mode
 if has('gui_running')
@@ -157,16 +151,44 @@ if has('gui_running')
 
 
     "set anti enc=utf-8
-    set guifont=Source_Code_Pro:h10
+    set guifont=Source_Code_Pro:h11
 
     " Hide the toolbar
-    set guioptions-=T
-    set guioptions-=m
-    set guioptions-=r
-    set guioptions-=L
+    set guioptions-=T "toolbar
+    set guioptions-=m "menu bar
+    set guioptions+=r "right scroll bar
+    set guioptions-=L "left scrol bar
+
+    set lines=50 columns=100
 
 	autocmd GUIEnter * set vb t_vb=
+
+
+" term
+else
 endif
+
+" }}}
+" Colors and Fonts --------------------------------------------------------- {{{ 
+
+" color scheme
+colorscheme wombat 
+
+" Search color
+hi Search cterm=NONE ctermfg=white ctermbg=darkgrey guibg=peru guifg=wheat
+
+" Set line number colour
+"highlight LineNr ctermfg=Grey
+
+" Show column 80 in a colour
+"hi ColorColumn ctermbg=DarkGrey
+"set textwidth=80
+"set colorcolumn=+1 
+
+" Cursor line colour
+hi clear cursorline
+set cursorline
+hi CursorLine ctermbg=Darkblue guibg=black 
 
 " }}}
 " Text, tabs and indents  -------------------------------------------------- {{{ 
@@ -192,10 +214,6 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" Map space to search
-map <space> /
-map <c-space> ?
-
 " Use tab instead of % to go to matching bracket
 nnoremap <tab> %
 vnoremap <tab> %
@@ -217,7 +235,8 @@ set gdefault
 " }}}
 " C# ----------------------------------------------------------------------- {{{
 " Surround word by Mock<>
-map <leader>m biMock<<ESC>ea><space>
+"map <leader>m biMock<<ESC>ea><space>
+"map <leader><leader>m bipublic class <ESC>ea<space>
 "}}}
 " Editing mappings --------------------------------------------------------- {{{ 
 
@@ -242,12 +261,5 @@ noremap cp yap<S-}>p
 
 "nnoremap <leader>b :!.\build.bat<CR>
 
-" }}}
-" Plugins ------------------------------------------------------------------ {{{
-"   FuzzyFinder {{{
-nnoremap `f :FufFile<cr> 
-nnoremap `g :FufFile ~/Google Drive/**/<cr> 
-nnoremap `c :FufCoverageFile $cortex/<cr> 
-"   }}}
 " }}}
 
