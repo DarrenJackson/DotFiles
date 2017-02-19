@@ -24,6 +24,7 @@ call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-fugitive'
 Plugin 'zeis/vim-kolor'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
@@ -43,7 +44,7 @@ syntax on
 
 "set modelines=0                        "What does this do?
 "set encoding=utf-8
-set term=xterm
+"set term=xterm
 
 " Misc
 set t_Co=256
