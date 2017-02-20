@@ -25,7 +25,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'zeis/vim-kolor'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/FuzzyFinder'
 call vundle#end()
@@ -74,6 +75,9 @@ set directory=$HOME/.vim/swapdir
 
 " Always show the status line
 set laststatus=2
+
+" Use fancy fonts for airline
+let g:airline_powerline_fonts=1
 
 " }}}
 " VIM user interface ------------------------------------------------------- {{{
