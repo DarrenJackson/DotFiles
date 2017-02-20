@@ -5,8 +5,6 @@
 " za to toggle folds
 " zr to unfold all
 " zm to fold all
-"
-"execute pathogen#infect()
 
 " }}}
 " Vundle ------------------------------------------------------------------- {{{ 
@@ -42,11 +40,14 @@ filetype plugin indent on
 " Syntax highlighting
 syntax on
 
-"set modelines=0                        "What does this do?
-"set encoding=utf-8
-"set term=xterm
+" Set UTF-8 as standard encoding
+set encoding=utf-8
+
+" No mode lines
+set modelines=0
 
 " Misc
+set term=xterm
 set t_Co=256
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
@@ -67,9 +68,12 @@ set directory=$HOME/.vim/swapdir
 " shortcut to source the vim.rc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
-":nnoremap <PageUp> :bnext<CR>
-":nnoremap <PageDown> :bprevious<CR>
+" Move the Next/Previous buffer
+:nnoremap <PageUp> :bnext<CR>
+:nnoremap <PageDown> :bprevious<CR>
 
+" Always show the status line
+set laststatus=2
 
 " }}}
 " VIM user interface ------------------------------------------------------- {{{
@@ -83,6 +87,7 @@ set so=7
 " Command menus, start command and press tab
 set wildmenu
 set wildmode=list:longest,full
+set wildignore=*.o,*~,.git\*
 
 " Always show current position
 set ruler
@@ -94,16 +99,15 @@ set ruler
 "noremap <leader>j f,li<cr><esc>
 
 " Configure backspace so it acts as it should act
-set backspace=eol,start,indent
+set backspace=indent,eol,start
 
+" Allow arrow keys to continue between lines
 set whichwrap+=<,>,h,l
 
 "nnoremap <CS-j> <S-j>
 
-
 " Show matching brackets when cursor is over them
 "set showmatch
-
 
 " No annoying sounds on errors
 set noerrorbells
@@ -116,7 +120,6 @@ inoremap jj <esc>
 " Show command being entered
 "set showcmd
 
-
 " }}}
 " SEARCH ------------------------------------------------------------------- {{{
 
@@ -124,7 +127,7 @@ inoremap jj <esc>
 map <space> /
 map <c-space> ?
 
-" Ignore case when searching
+" Ignore case when searching unless search-term has an uppercase
 set ignorecase
 set smartcase
 
@@ -140,7 +143,6 @@ nnoremap <leader><space> :noh<cr>
 "}}}
 " GVim Options ------------------------------------------------------------- {{{ 
 
-
 " Set extra options when running in GUI mode
 if has('gui_running')
 
@@ -152,22 +154,21 @@ if has('gui_running')
 
 
     "set anti enc=utf-8
-    set guifont=Source_Code_Pro:h11
+    set guifont=Source_Code_Pro:h14
 
     " Hide the toolbar
-    set guioptions-=T "toolbar
+    set guioptions-=T "noremap
     set guioptions-=m "menu bar
     set guioptions+=r "right scroll bar
-    set guioptions-=L "left scrol bar
+    set guioptions-=L "left scroll bar
 
     set lines=50 columns=100
 
 	autocmd GUIEnter * set vb t_vb=
 
-
-" term
 else
 endif
+
 
 " }}}
 " Colors and Fonts --------------------------------------------------------- {{{ 
@@ -178,6 +179,7 @@ colorscheme wombat
 " Search color
 hi Search cterm=NONE ctermfg=white ctermbg=darkgrey guibg=peru guifg=wheat
 
+"if has('gui_running')
 " Set line number colour
 "highlight LineNr ctermfg=Grey
 
@@ -264,3 +266,4 @@ noremap cp yap<S-}>p
 
 " }}}
 
+"endif
