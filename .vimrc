@@ -22,6 +22,7 @@ call vundle#begin(path)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'OrangeT/vim-csharp'
 Plugin 'tpope/vim-fugitive'
 Plugin 'zeis/vim-kolor'
 Plugin 'flazz/vim-colorschemes'
@@ -29,6 +30,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'sickill/vim-pasta'
+Plugin 'PProvost/vim-ps1'
+Plugin 'AndrewRadev/sideways'
 call vundle#end()
 filetype plugin indent on
 
