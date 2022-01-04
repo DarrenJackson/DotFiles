@@ -1,13 +1,14 @@
-" .vimrc - Darren Jackson - 2016/11/30
+" .vimrc - Darren Jackson - 2022/01/04
 "
-" Intro -------------------------------------------------------------------- {{{ 
+" Intro {{{ 
 
 " za to toggle folds
 " zr to unfold all
 " zm to fold all
 
 " }}}
-" Vundle ------------------------------------------------------------------- {{{ 
+
+" Vundle {{{ 
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -37,7 +38,8 @@ call vundle#end()
 filetype plugin indent on
 
 "}}}
-" General ------------------------------------------------------------------ {{{ 
+
+" General {{{ 
 
 "let $cortex = "C:\\Cortex\\dev\\Jan\\Src\\Net\\Apps\\Gui"
 "au BufNewFile,BufRead *.xaml set filetype=xml
@@ -52,7 +54,7 @@ set encoding=utf-8
 set modelines=0
 
 " Misc
-set term=xterm
+"set term=xterm
 set t_Co=256
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
@@ -82,20 +84,23 @@ set laststatus=2
 
 " Use fancy fonts for airline
 let g:airline_powerline_fonts=1
-
+:1
 " }}}
-" VIM user interface ------------------------------------------------------- {{{
+
+" VIM user interface {{{
 
 " Set 7 lines to the curser (top/bottom)
 set so=7 
 
 " Relative line numbers
-"set relativenumber
+set relativenumber
 
 " Command menus, start command and press tab
+set path+=**
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.o,*~,.git\*
+set wildignore+=**/bin/**
 
 " Always show current position
 set ruler
@@ -121,6 +126,7 @@ set whichwrap+=<,>,h,l
 set noerrorbells
 set novisualbell
 set vb t_vb=
+set belloff=all
 
 " Map jj to escape
 inoremap jj <esc>
@@ -129,7 +135,8 @@ inoremap jj <esc>
 "set showcmd
 
 " }}}
-" SEARCH ------------------------------------------------------------------- {{{
+
+" Search {{{
 
 " Map space to search
 map <space> /
@@ -148,46 +155,34 @@ set hlsearch
 " Clear highlighted search by pressing ,<space>
 nnoremap <leader><space> :noh<cr>
 
-"}}}
-" GVim Options ------------------------------------------------------------- {{{ 
 
-" Set extra options when running in GUI mode
-if has('gui_running')
-
-    set renderoptions=type:directx,
-        \gamma:1.5,contrast:0.5,geom:1,
-        \renmode:5,taamode:1,level:0.5set renderoptions=type:directx,
-        \gamma:1.5,contrast:0.5,geom:1,
-        \renmode:5,taamode:1,level:0.5
-
-
-    "set anti enc=utf-8
-    set guifont=Source_Code_Pro:h14
-
-    " Hide the toolbar
-    set guioptions-=T "noremap
-    set guioptions-=m "menu bar
-    set guioptions+=r "right scroll bar
-    set guioptions-=L "left scroll bar
-
-    set lines=50 columns=100
-
-	autocmd GUIEnter * set vb t_vb=
-
-else
-endif
 
 
 " }}}
-" Colors and Fonts --------------------------------------------------------- {{{ 
 
-" color scheme
+" Colours {{{ 
+
+syntax enable
+set termguicolors
 colorscheme wombat 
 
 " Search color
 hi Search cterm=NONE ctermfg=white ctermbg=darkgrey guibg=peru guifg=wheat
 
-"if has('gui_running')
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Hack:h14:cANSI
+  endif
+endif
+
+"set guifont! = Hack:h12:1
+set guioptions -=m
+set guioptions -=T
+"
 " Set line number colour
 "highlight LineNr ctermfg=Grey
 
@@ -202,7 +197,8 @@ set cursorline
 hi CursorLine ctermbg=Darkblue guibg=black 
 
 " }}}
-" Text, tabs and indents  -------------------------------------------------- {{{ 
+"
+" Text, tabs and indents  {{{ 
 
 " 1 tab = 4 spaces 
 set tabstop=4
@@ -214,7 +210,8 @@ set softtabstop=4
 set expandtab
 
 " }}}
-" Moving around ------------------------------------------------------------ {{{ 
+
+" Moving around {{{ 
 
 " Split screen with ,w
 noremap <leader>w <C-w>v<C-w>l
@@ -244,12 +241,8 @@ set gdefault
 
 
 " }}}
-" C# ----------------------------------------------------------------------- {{{
-" Surround word by Mock<>
-"map <leader>m biMock<<ESC>ea><space>
-"map <leader><leader>m bipublic class <ESC>ea<space>
-"}}}
-" Editing mappings --------------------------------------------------------- {{{ 
+
+" Editing Mappings {{{ 
 
 " Move line(s) of text using ALT+[jk] or Comamnd+[jk] on mac
 nnoremap <A-j> :m .+1<CR>==
